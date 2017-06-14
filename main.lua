@@ -64,7 +64,6 @@ end -- LO .load()
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 function LO .update(dt)
-
   -- keep the music playin'
   if bgm :isStopped() then
     newSong()
@@ -92,6 +91,7 @@ function LO .draw()
 
   gra .print( 'READY',  40,  120 )
   gra .print( track,  40,  150 )
+  gra .print( 'tap End key to hear the next song',  60,  HH -40 )
 end -- LO .draw()
 
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
