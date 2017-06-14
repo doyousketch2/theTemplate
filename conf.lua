@@ -30,9 +30,9 @@ function love .conf(t)
                           --- including Images and Fonts) into memory, creating specialized objects
                           --- (such as ParticleSystems or Canvases) and managing screen geometry.
 
-  m .sound    = false     -- This module is responsible for decoding sound files.
+  m .sound    = true      -- This module is responsible for decoding sound files.
                           --- It can't play the sounds, see love.audio for that.
-  m .audio    = false     -- Provides an interface to output sound to the user's speakers.
+  m .audio    = true      -- Provides an interface to output sound to the user's speakers.
   m .video    = false     -- This module is responsible for decoding, controlling, and streaming video files.
   m .physics  = false     -- Can simulate 2D rigid body physics in a realistic manner.
                           --- This module is based on Box2D
