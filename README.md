@@ -10,7 +10,9 @@ or just type out the first 3 letters of the module you wish to use.
 
 In this case, it would simply be 'gra' or 'aud'  
 
-To use this, you'll need Löve2d https://love2d.org  
+---
+To use this, you'll need Löve2d  
+https://love2d.org  
 
 Linux: *enter dir, then type*  
 `love .`  
