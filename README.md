@@ -1,7 +1,7 @@
 # theTemplate
 Template for Love2D,  to speed up game development  
 
-You'll want to draw your own icon, most likely, included to show conf.lua syntax.  
+You'll want to draw your own icon, most likely.  Included to show conf.lua syntax.  
 
 Includes a bunch'a **3-letter abbreviations.**  See inside for details.  
 
