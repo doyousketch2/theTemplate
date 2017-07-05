@@ -1,46 +1,45 @@
 function love .conf(t)
   local w  = t .window
   local m  = t .modules
-
+--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   w .title  = 'Löve theTemplate'
   w .icon   = 'icon.png'
 
-  w .width  = 640
-  w .height = 480
+  w .width  = 800
+  w .height = 600
+  w .vsync  = true                     -- Enable vertical sync  (boolean)
+
+  t .version  = '0.10.2'               -- LÖVE version this game was made for
+
+  t .identity  = 'theTemplate'         -- Name of the save directory
+  t .externalstorage  = false          -- Read & write from external storage on Android
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  t .version  = '0.10.2'               -- The LÖVE version this game was made for (string)
-  t .identity  = 'theTemplate'         -- The name of the save directory (string)
-  t .externalstorage  = false          -- True to save files (and read from the save directory)
-                                       --- in external storage on Android (boolean)
-  m .timer   = true       -- Provides high-resolution timing functionality,
-                          --- Disabling it will result 0 delta time in love.update
-  m .event   = true       -- Manages events, like keypresses.
-  m .math    = true       -- Provides system-independent mathematical functions.
+  m .window  = true       -- Modify and retrieve information about the program's window.
+  m .timer   = true       -- High-resolution timing functionality,
+                          --- Disabling will result 0 delta time in love.update
+  m .event   = true       -- Manage events, like keypresses.
+  m .math    = true       -- System-independent mathematical functions.
 
-  m .mouse     = true     -- Provides an interface to the user's mouse.
-  m .keyboard  = true     -- Provides an interface to the user's keyboard.
-  m .joystick  = false    -- Provides an interface to connected joysticks.
-  m .touch     = true     -- Provides an interface to touch-screen presses.
+  m .keyboard  = true     -- Interface to user's keyboard.
+  m .mouse     = true     --             user's mouse.
+  m .touch     = true     --            touch-screen presses.
+  m .joystick  = false    --           connected joysticks.
 
-  m .window    = true     -- Provides an interface for modifying and retrieving information about the program's window.
-  m .image     = true     -- Provides an interface to decode encoded image data.
-  m .graphics  = true     -- The primary responsibility for the love.graphics module is the drawing of
-                          --- lines, shapes, text, Images and other Drawable objects onto the screen.
-                          --- Its secondary responsibilities include loading external files
-                          --- including Images and Fonts) into memory, creating specialized objects
-                          --- (such as ParticleSystems or Canvases) and managing screen geometry.
+  m .image     = true     -- Decode encoded image data.
+  m .graphics  = true     -- Draw lines, shapes, text, Images and other Drawable objects onto screen.
+                          --- Its secondary responsibilities include:
+                          --- loading Images and Fonts into memory,   managing screen geometry,
+                          --- creating drawable objects,  such as ParticleSystems or Canvases.
 
-  m .sound    = true      -- This module is responsible for decoding sound files.
-                          --- It can't play the sounds, see love.audio for that.
-  m .audio    = true      -- Provides an interface to output sound to the user's speakers.
-  m .video    = false     -- This module is responsible for decoding, controlling, and streaming video files.
-  m .physics  = false     -- Can simulate 2D rigid body physics in a realistic manner.
-                          --- This module is based on Box2D
+  m .sound    = true      -- Decode sound files.  It can't play sounds, see love.audio for that.
+  m .audio    = true      -- Output sound to user's speakers.
 
-  m .system   = false     -- Provides access to information about the user's system.
+  m .video    = false     -- Decode, control, and stream video files.
+  m .physics  = false     -- Simulate 2D rigid body physics in a realistic manner,  based on Box2D
+
+  m .system   = false     -- Information about user's system.
   m .thread   = false     -- Allows you to work with threads.
 
---  filesystem            ** Provides an interface to the user's filesystem.
 --  font                  ** Allows you to work with fonts.
-
+--  filesystem            ** Interface to user's filesystem.
 end
