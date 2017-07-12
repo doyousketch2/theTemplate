@@ -5,8 +5,8 @@ You'll want to draw your own icon, most likely.  Included to show conf.lua synta
 
 Includes a bunch'a **3-letter abbreviations.**  See inside for details.  
 
-You can type out "love.graphics" or "love.audio" everytime,  
-or just type out the first 3 letters of the module you wish to use.  
+You could type out *love.graphics* or *love.audio* everytime,  
+or just type out the *first 3 letters of the module* you wish to use.  
 
 In this case, it would simply be 'gra' or 'aud'  
 
