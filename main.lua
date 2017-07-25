@@ -28,54 +28,52 @@ h4   = HH *0.4     h5  = HH *0.5     h6  = HH *0.6
 h7   = HH *0.7     h8  = HH *0.8     h9  = HH *0.9
 h66  = HH *0.667                    h75  = HH *0.75
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
--- local vars to be used within this file,  or function scope.
+-- it appears local vars aren't accessible through gamestates, using globals instead.
+-- not a biggie, just make sure you don't re-use names for something else.
 
-local track  = ''
-local bgmdir  = fil .getDirectoryItems( 'data/music/' )
+timer  = 0
 
-local fontsize  = 15
-local style  = 'data/fonts/C64_Pro-STYLE.ttf'
+style  = 'data/fonts/C64_Pro-STYLE.ttf'
+smallFontSize   = 16
+mediumFontSize  = 20
+largeFontSize   = 30
+xlargeFontSize  = 35
 
-local enemy  = require 'libs.enemy'
-local e  = {} -- list of enemies
+black  = {   0,   0,   0 }
+cBlue  = {  62,  49, 162 }
+ltBlue = { 124, 112, 218 }
+white  = { 255, 255, 255 }
 
-local eMax  = 200 -- max amount of enemies on screen at once
-local timer  = 0
-local once  = false
-
-local black  = {   0,   0,   0 }
-local cBlue  = {  62,  49, 162 }
-local ltBlue = { 124, 112, 218 }
-local white  = { 255, 255, 255 }
-
-local smallFontSize   = 16
-local mediumFontSize  = 20
-local largeFontSize   = 30
-local xlargeFontSize  = 35
-
-local pad  = 15  -- border padding  l,r,u,d
-local lpad  = pad     local rpad  = WW -pad
-local upad  = pad     local dpad  = HH -pad
-
-local states  = { 'blank', 'header', 'mem', 'ready', 'run', 'game' }
-local state  = states[1]
+pad  = 15  -- border padding  l,r,u,d
+lpad  = pad     rpad  = WW -pad
+upad  = pad     dpad  = HH -pad
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
--- define functions you'll use within the body of your app
+-- define state manager, which will load main.lua within its respective states subdir
 
-function newSong() -- public domain songs from modarchive.org
-  local lasttrack  = track
-  while track == lasttrack do -- shuffle 'til we're certain it's not the same song
-    track  = bgmdir[ mat .random( #bgmdir ) ]
-  end
-  print( 'track:  ' ..track )
-  bgm  = aud .newSource( 'data/music/' ..track )
-  aud .play( bgm )
-end -- newSong()
+function clearCallbacks()
+	Lo .update  = nil
+	Lo .draw  = nil
+	Lo .keypressed  = nil
+	Lo .keyreleased  = nil
+	Lo .mousepressed  = nil
+	Lo .mousereleased  = nil
+	Lo .joystickpressed  = nil
+	Lo .joystickreleased  = nil
+end
 
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
--- initialize stuff.  can access commandline args here,  if you need them.
 
-function Lo .load( arg )
+function loadState( state )
+	clearCallbacks()
+	print( 'Gamestate:  ' ..state )
+	require ('states.' ..state ..'.main')
+	load()
+end
+
+--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ -- initial love .load() function,  individual gamestates simply use load() to initialize.
+
+function Lo .load()
   print('Löve app begin')
 
   for a = 1,  #arg do -- 'arg' is a list of all the args,  so iterate through it.
@@ -90,10 +88,12 @@ function Lo .load( arg )
     end -- if ar ~= '.'
   end -- for arg
 
-  -- disable ar so pixels remain crisp while zooming,  used for pixel art
+  -- disable antialiasing, so pixels remain crisp while zooming,  used for pixel art
   -- gra .setDefaultFilter( 'nearest',  'nearest',  0 )
 
+ -- initialize random numbers, otherwise Love defaults to the same number each time ?!?
   mat .setRandomSeed( os .time() )
+
   gra .setBackgroundColor( cBlue )
   gra .setColor( ltBlue )
   gra .setLineWidth( pad *2 )
@@ -104,211 +104,8 @@ function Lo .load( arg )
   xlargeFont  = gra .newFont( style, xlargeFontSize )
 
   gra .setFont( mediumFont )
-end -- Lo .load(arg)
-
---~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
--- Scancodes are international,  keyboard layout-independent.
--- see scancodes.txt in the data dir for reference.
-
-function Lo .keypressed( key, scancode, isrepeat ) -- action continues while key pressed
-  if scancode == 'escape'  then  eve .quit()  end
-
-  if scancode == 'space'  then -- toggle game state
-    if state == states[#states]  then  state = states[1] -- if last,  jump to beginning
-    else   s = 1
-      while state ~= states[s]  do  s  = s +1  end -- scroll through list 'till find match
-      state  = states[s +1] -- pick next entry
-    end -- if state ==
-  end -- if scancode == 'space'
-
-  if scancode == 'left'  then  player .x  = player .x -1  end
-  if scancode == 'right' then  player .x  = player .x +1  end
-
-  if scancode == 'up'   then  player .y  = player .y +1  end
-  if scancode == 'down' then  player .y  = player .y -1  end
-
-end -- Lo .keypressed
-
--- triggers after user releases key,  better for single press actions
-function Lo .keyreleased( key, scancode )
-
-  if scancode == 'end' then -- skip to the next song
-    bgm :stop()
-  end -- if scancode
-
-end -- Lo .keyreleased
-
---~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
--- Callback function used to update state of game every frame,  occurs before draw()
-
-function Lo .update( dt ) -- DeltaTime  = time since last update,  in seconds.
-  timer  = timer +dt
-
-  if state == 'blank' then
-    if timer > 1  then state = 'header' end
-
-  elseif state == 'header' then
-    if timer > 1.5 then state = 'mem' end
-
-  elseif state == 'mem' then
-    if timer > 2  then state = 'ready' end
-
-  elseif state == 'ready' then
-    if timer > 2.5  then state = 'load' end
-
-  elseif state == 'load' then
-    if timer > 3  then state = 'run' end
-
-  elseif state == 'run' then
-    if timer > 4.5  then state = 'game' end
-
-  elseif state == 'game' then
-    if once == false then
-      once = true
-      newSong()  -- begin music
-    end
-
-    if #e < eMax then
-      if timer > .5 then -- spawn a new enemy every half-second
-
-        local rn  = mat .random() -- randomly pick which enemy
-        if rn > .6 then
-          e[ #e +1 ]  = enemy .dia() -- spawn a diamond
-        elseif rn > .2 then
-          e[ #e +1 ]  = enemy .hex() -- spawn a hexagon
-        else
-          e[ #e +1 ]  = enemy .cir() -- spawn a circle
-        end -- if random...
-
-        timer  = 0 -- reset timer
-      end -- if timer
-    end -- if #e
-
-    for i = 1,  #e do -- update enemy locations
-      local E  = e[i]
-      E.x  = E.x  +  E.vx * dt
-      E.y  = E.y  +  E.vy * dt
-
-      if E.x < lpad or E.x > rpad then -- if hit wall
-        E.vx  = -E.vx              -- reverse direction
-      end
-
-      if E.y < upad or E.y > dpad then -- if hit ceiling or floor
-        E.vy  = -E.vy              -- reverse direction
-      end
-    end -- for i = 1,  #e
-
-    -- keep the music playing
-    if bgm :isStopped() then
-      newSong()
-    end -- if bgm
-  end -- if state == 'game'
-end -- Lo .update(dt)
-
---~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
--- Callback function used to draw on the screen every frame.
-
-function Lo .draw()
-
-  if state == 'blank' then
-
-    gra .setColor( ltBlue )
-
-    --  'fill' or 'line'   topL, topR, bottomR, bottomL
-    gra .polygon( 'line',  0,0,  WW,0,  WW,HH,  0,HH )
-
-
-  elseif state == 'header' then
-
-    gra .setColor( ltBlue )
-
-    --  'fill' or 'line'   topL, topR, bottomR, bottomL
-    gra .polygon( 'line',  0,0,  WW,0,  WW,HH,  0,HH )
-
-  -- gra .print( 'message',  x,  y,  rotation in radians,  scaleX,  scaleY )
-    gra .print( '****  Love theTemplate v 0.10.2  ****',  w1 -30,  h1 )
-
-
-  elseif state == 'mem' then
-
-    gra .setColor( ltBlue )
-
-    --  'fill' or 'line'   topL, topR, bottomR, bottomL
-    gra .polygon( 'line',  0,0,  WW,0,  WW,HH,  0,HH )
-
-  -- gra .print( 'message',  x,  y,  rotation in radians,  scaleX,  scaleY )
-    gra .print( '****  Love theTemplate v 0.10.2  ****',  w1 -30,  h1 )
-    gra .print( '64K RAM SYSTEM  38911 BASIC BYTES FREE',  w1 -30,  h1 +30 )
-
-
-  elseif state == 'ready' then
-
-    gra .setColor( ltBlue )
-
-    --  'fill' or 'line'   topL, topR, bottomR, bottomL
-    gra .polygon( 'line',  0,0,  WW,0,  WW,HH,  0,HH )
-
-  -- gra .print( 'message',  x,  y,  rotation in radians,  scaleX,  scaleY )
-    gra .print( '****  Love theTemplate v 0.10.2  ****',  w1 -30,  h1 )
-    gra .print( '64K RAM SYSTEM  38911 BASIC BYTES FREE',  w1 -30,  h1 +30 )
-
-    gra .print( 'READY',  w1,  h3 -30 )
-
-
-  elseif state == 'load' then
-
-    gra .setColor( ltBlue )
-
-    --  'fill' or 'line'   topL, topR, bottomR, bottomL
-    gra .polygon( 'line',  0,0,  WW,0,  WW,HH,  0,HH )
-
-  -- gra .print( 'message',  x,  y,  rotation in radians,  scaleX,  scaleY )
-    gra .print( '****  Love theTemplate v 0.10.2  ****',  w1 -30,  h1 )
-    gra .print( '64K RAM SYSTEM  38911 BASIC BYTES FREE',  w1 -30,  h1 +30 )
-
-    gra .print( 'READY',  w1,  h3 -30 )
-    gra .print( 'LOAD \"*\", 8, 1',  w1,  h3 )
-
-
-  elseif state == 'run' then
-
-    gra .setColor( ltBlue )
-
-    --  'fill' or 'line'   topL, topR, bottomR, bottomL
-    gra .polygon( 'line',  0,0,  WW,0,  WW,HH,  0,HH )
-
-  -- gra .print( 'message',  x,  y,  rotation in radians,  scaleX,  scaleY )
-    gra .print( '****  Love theTemplate v 0.10.2  ****',  w1 -30,  h1 )
-    gra .print( '64K RAM SYSTEM  38911 BASIC BYTES FREE',  w1 -30,  h1 +30 )
-
-    gra .print( 'READY',  w1,  h3 -30 )
-    gra .print( 'LOAD \"*\", 8, 1',  w1,  h3 )
-    gra .print( 'RUN',  w1,  h3 +30 )
-
-
-  elseif state == 'game' then
-
-    for i = 1,  #e do  -- draw enemies
-      local E  = e[i]
-      gra .setColor( E.R,  E.G,  E.B ) -- red, green, blue
-      gra .circle( 'fill',  E.x,  E.y,  E.size,  E.segments ) -- style,  x,  y,  radius,  segments
-    end -- for #e
-
-    gra .setColor( ltBlue )
-
-    --  'fill' or 'line'   topL, topR, bottomR, bottomL
-    gra .polygon( 'line',  0,0,  WW,0,  WW,HH,  0,HH )
-
-  -- gra .print( 'message',  x,  y,  rotation in radians,  scaleX,  scaleY )
-    gra .print( '****  Love theTemplate v 0.10.2  ****',  w1 -30,  h1 )
-    gra .print( '64K RAM SYSTEM  38911 BASIC BYTES FREE',  w1 -30,  h1 +30 )
-
-    gra .print( track,  w1,  h3 -30 )
-
-    gra .print( 'tap End key to hear the next song',  w1 +20,  h9 )
-
-  end -- if state ==
-end -- Lo .draw()
+	loadState( 'blank' )
+end
 
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
