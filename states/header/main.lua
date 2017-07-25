@@ -12,8 +12,8 @@ end -- Lo .keypressed
 function Lo .update( dt ) -- DeltaTime  = time since last update,  in seconds.
   timer  = timer +dt
 
-  if timer > 1 then
-    loadState( 'mem' )
+  if timer > 1  then
+    loadState( 'run' )
   end -- if timer >
 end -- Lo .update(dt)
 
@@ -27,6 +27,9 @@ function Lo .draw()
 
 -- gra .print( 'message',  x,  y,  rotation in radians,  scaleX,  scaleY )
   gra .print( '****  Love theTemplate v 0.10.2  ****',  w1 -30,  h1 )
+  gra .print( '64K RAM SYSTEM  38911 BASIC BYTES FREE',  w1 -30,  h1 +30 )
+
+  gra .print( 'READY',  w1 -10,  h3 -30 )
 end -- Lo .draw()
 
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

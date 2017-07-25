@@ -12,7 +12,7 @@ end -- Lo .keypressed
 function Lo .update( dt ) -- DeltaTime  = time since last update,  in seconds.
   timer  = timer +dt
 
-    if timer > 4.5  then
+    if timer > 3  then
     loadState( 'game' )
   end -- if timer >
 end -- Lo .update(dt)
