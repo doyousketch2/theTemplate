@@ -85,11 +85,11 @@ function Lo .update( dt ) -- DeltaTime  = time since last update,  in seconds.
     E.x  = E.x  +  E.vx * dt
     E.y  = E.y  +  E.vy * dt
 
-    if E.x < lpad or E.x > rpad then -- if hit wall
+    if E.x -E.size < lpad or E.x +E.size > rpad then -- if hit wall
       E.vx  = -E.vx              -- reverse direction
     end
 
-    if E.y < upad or E.y > dpad then -- if hit ceiling or floor
+    if E.y -E.size < upad or E.y +E.size > dpad then -- if hit ceiling or floor
       E.vy  = -E.vy              -- reverse direction
     end
   end -- for i = 1,  #e
@@ -107,7 +107,7 @@ end -- Lo .update(dt)
 function Lo .draw()
 
   for i = 1,  #e do  -- draw enemies
-    local E  = e[i]
+    local ee  = e[i]
     gra .setColor( E.R,  E.G,  E.B ) -- red, green, blue
     gra .circle( 'fill',  E.x,  E.y,  E.size,  E.segments ) -- style,  x,  y,  radius,  segments
   end -- for #e

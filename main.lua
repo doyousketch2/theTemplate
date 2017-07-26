@@ -51,23 +51,24 @@ upad  = pad     dpad  = HH -pad
 -- define state manager, which will load main.lua within its respective states subdir
 
 function clearCallbacks()
-	Lo .update  = nil
-	Lo .draw  = nil
-	Lo .keypressed  = nil
-	Lo .keyreleased  = nil
-	Lo .mousepressed  = nil
-	Lo .mousereleased  = nil
-	Lo .joystickpressed  = nil
-	Lo .joystickreleased  = nil
+  Lo .update  = nil
+  Lo .draw  = nil
+  Lo .keypressed  = nil
+  Lo .keyreleased  = nil
+  Lo .mousepressed  = nil
+  Lo .mousereleased  = nil
+  Lo .joystickpressed  = nil
+  Lo .joystickreleased  = nil
 end
 
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 function loadState( state )
-	clearCallbacks()
-	print( 'Gamestate:  ' ..state )
-	require ('states.' ..state ..'.main')
-	load()
+  clearCallbacks()
+  require ('states.' ..state ..'.main')
+
+  print( 'Gamestate:  ' ..state )
+  load()
 end
 
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -89,7 +90,7 @@ function Lo .load()
   end -- for arg
 
   -- disable antialiasing, so pixels remain crisp while zooming,  used for pixel art
-  -- gra .setDefaultFilter( 'nearest',  'nearest',  0 )
+  gra .setDefaultFilter( 'nearest',  'nearest',  0 )
 
  -- initialize random numbers, otherwise Love defaults to the same number each time ?!?
   mat .setRandomSeed( os .time() )
@@ -104,7 +105,7 @@ function Lo .load()
   xlargeFont  = gra .newFont( style, xlargeFontSize )
 
   gra .setFont( mediumFont )
-	loadState( 'blank' )
+  loadState( 'blank' )
 end
 
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
