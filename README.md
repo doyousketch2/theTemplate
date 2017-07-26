@@ -5,8 +5,8 @@ You'll want to draw your own icon, most likely.  Included to show conf.lua synta
 
 Includes a bunch'a **3-letter abbreviations.**  See inside for details.  
 
-You could type out *love.graphics* everytime,  or *gra* with this template.  
-just type out the *first 3 letters of the module* you wish to use.  
+You could type out *love.graphics* everytime, or *gra* with this template.  
+just type out the first 3 letters of the module you wish to use.  
 
 ---  
 To use this, you'll need Löve2d  
