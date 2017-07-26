@@ -20,6 +20,12 @@ Win, Mac:  *drag folder on Love shortcut*
 
 for more info, see https://love2d.org/wiki/Getting_Started  
 
+Android:  use any file manager that lets you *Open As...*  
+Open a .love file as other, complete action using Löve for Android  
+
+Alternatively, open the folder, and do the same thing with *main.lua*  
+https://play.google.com/store/apps/details?id=com.alphainventor.filemanager  
+
 ---  
 I realize there's no player in there yet.  
 Was going to put a guy at the bottom that runs around,  
