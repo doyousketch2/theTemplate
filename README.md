@@ -49,7 +49,7 @@ If my kid can get it, you can too.
 **YouTube clips to help speed up the learning process.**
 
 I hate "Learn X programming language in an Hour" vids,  
-'cuz they skim over everything to cram it all in.  
+'cuz they skim over everything, to cram it all in.  
 
 That said, this one is decent.
 
