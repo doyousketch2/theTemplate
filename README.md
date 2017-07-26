@@ -1,7 +1,8 @@
 # theTemplate
 Template for Löve2D,  to speed up game development  
 
-You'll want to draw your own icon, most likely.  Included to show conf.lua syntax.  
+You'll want to draw your own icon, most likely.  
+It's there to show conf.lua syntax.  
 
 Includes a bunch'a **3-letter abbreviations.**  See inside for details.  
 
