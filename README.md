@@ -40,7 +40,7 @@ You'll see inside the code.  It's not that hard to figure out.
 
 Lua doesn't mind spacing, so you can do a  
 find 'space dot' and replace with 'dot' easily enough,  
-or 'space space equals' with 'equals' if you prefer.  
+substitute 'space space equals' with 'equals' if you prefer.  
 
 The idea is to make Lua games easy.  
 If my kid can get it, you can too.
