@@ -51,22 +51,22 @@ If my kid can get it, you can too.
 I hate "Learn X programming language in an Hour" vids,  
 'cuz they skim over everything, to cram it all in.  
 
-That said, this one is decent.
+That said, this one is decent.  
 
-Learn Lua in an Hour - by Tyler Neylon
-https://www.youtube.com/watch?v=S4eNl1rA1Ns
-
-
-Here is a decent playlist that breaks down the steps involved.
-Make your own game - by goature
-https://www.youtube.com/playlist?list=PL924F20B05A624D91
+Learn Lua in an Hour - by Tyler Neylon  
+https://www.youtube.com/watch?v=S4eNl1rA1Ns  
 
 
-This one is annoying for the reason I gave above.
-https://www.youtube.com/watch?v=iMacxZQMPXs
+Here is a decent playlist that breaks down the steps involved.  
+Make your own game - by goature  
+https://www.youtube.com/playlist?list=PL924F20B05A624D91  
 
-The cheat-sheet is easier than listening to him rattle on.
-http://www.newthinktank.com/2015/06/learn-lua-one-video
 
-I've watched a ton of Lua vids, and that might be the best way,
-'cuz you'll get something from one, and something else from another.
+This one is annoying for the reason I gave above.  
+https://www.youtube.com/watch?v=iMacxZQMPXs  
+
+The cheat-sheet is easier than listening to him rattle on.  
+http://www.newthinktank.com/2015/06/learn-lua-one-video  
+
+I've watched a ton of Lua vids, and that might be the best way,  
+'cuz you'll get something from one, and something else from another.  
