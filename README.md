@@ -31,3 +31,9 @@ where you control a paddle-and-ball that destroy the words.
 
 But that would take individual clone / placement of letteres,  
 and collision detection - which is do-able, just takes time.  
+
+---
+The spacing is so I can explain it to my kid.  
+
+Lua doesn't care much about spacing, so you can do a  
+find **' .'** and replace with **'.'** easily enough,  if you prefer.
