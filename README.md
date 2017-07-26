@@ -86,7 +86,7 @@ Reddit is a good source for info.
 
 To try out code, you can type **lua**  
 in your comand prompt / console, to get an interactive interpreter.  
-No exit command, must tap **Ctrl-D** *Linux, Mac* or **Ctrl-Z** *Win* to exit.  
+No exit command, must tap *(Linux, Mac)* **Ctrl-D** or *(Win)* **Ctrl-Z**, to exit.  
 
 Can try out snippets of code online  
 https://repl.it/languages/lua
