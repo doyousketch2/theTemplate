@@ -37,3 +37,6 @@ The spacing is so I can explain it to my kid.
 
 Lua doesn't mind spacing, so you can do a  
 find **'  .'** and replace with **'.'** easily enough,  if you prefer.
+
+The idea is to make Lua games easy.  
+If my kid can figure it out, you can too.
