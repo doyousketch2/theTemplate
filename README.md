@@ -55,7 +55,7 @@ Learn Lua in an Hour - by Tyler Neylon
 https://www.youtube.com/watch?v=S4eNl1rA1Ns  
 
 
-Here is a decent playlist that breaks down the steps involved.  
+Here's a playlist that breaks down the steps involved.  
 Make your own game - by goature  
 https://www.youtube.com/playlist?list=PL924F20B05A624D91  
 I got the simple gamestate-management from his vid 14.  
