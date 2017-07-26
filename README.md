@@ -85,7 +85,7 @@ Reddit is a good source for info.
 > /r/lua_questions  
 
 To try out code, you can type **lua**  
-in your comand prompt / console to get an interactive interpreter.  
+in your comand prompt / console, to get an interactive interpreter.  
 No exit command, must tap **Ctrl-D** to exit.  
 
 Can try out snippets of code online  
