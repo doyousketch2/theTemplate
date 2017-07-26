@@ -28,7 +28,7 @@ using a gun you aim with the mouse...
 Then I thought of a breakout clone,  
 where you control a paddle-and-ball that destroy the words.  
 
-But that would take individual clone / placement of letteres,  
+But that would take individual clone / placement of letters,  
 and collision detection - which is do-able, just takes time.  
 
 ---
