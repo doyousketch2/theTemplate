@@ -60,12 +60,13 @@ https://www.youtube.com/watch?v=S4eNl1rA1Ns
 Here is a decent playlist that breaks down the steps involved.  
 Make your own game - by goature  
 https://www.youtube.com/playlist?list=PL924F20B05A624D91  
+I got the simple gamestate-management from his vid 14.  
 
 
 This one is annoying for the reason I gave above.  
 https://www.youtube.com/watch?v=iMacxZQMPXs  
 
-The cheat-sheet is easier than listening to him rattle on.  
+The cheat-sheet is decent tho, easier than listening to him rattle on.  
 http://www.newthinktank.com/2015/06/learn-lua-one-video  
 
 I've watched a ton of Lua vids, and that might be the best way,  
