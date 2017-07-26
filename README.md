@@ -70,3 +70,25 @@ http://www.newthinktank.com/2015/06/learn-lua-one-video
 
 I've watched a ton of Lua vids, and that might be the best way,  
 'cuz you'll get something from one, and something else from another.  
+
+---
+Obviously, you'll want to refer to the Love2D wiki, and Lua docs.  
+You might find useful source code examples in other GitHub projects.  
+
+Reddit 
+> r/lua  
+> r/love2d  
+> /r/gamedev  
+> r/lua_questions  
+
+https://itch.io/games/tag-love2d  
+
+type **lua** in your comand prompt / console to get an interactive interpreter.  
+No exit command, must tap **Ctrl-D** to exit.  
+
+Can try out snippets of code online  
+https://repl.it/languages/lua
+
+If you're stumped, can look / ask at StackOverflow,  
+but their whole conversational ranking system **sux**.  
+https://stackoverflow.com/questions/tagged/lua
