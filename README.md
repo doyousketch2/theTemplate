@@ -73,14 +73,16 @@ I've watched a ton of Lua vids, and that might be the best way,
 
 ---
 Obviously, you'll want to refer to the Love2D wiki, and Lua docs.  
+https://love2d.org/wiki/Main_Page  
+
 You might find useful source code examples in other GitHub projects,  
 or games at itch.io  https://itch.io/games/tag-love2d   
 
 Reddit is a good source for info.
-> r/lua  
-> r/love2d  
+> /r/lua  
+> /r/love2d  
 > /r/gamedev  
-> r/lua_questions  
+> /r/lua_questions  
 
 To try out code, you can type **lua**  
 in your comand prompt / console to get an interactive interpreter.  
