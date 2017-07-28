@@ -1,0 +1,31 @@
+
+escape     f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+
+          `   1   2   3   4   5   6   7   8   9   0   -   =     backspace
+tab        q   w   e   r   t   y   u   i   o   p   [   ]   \
+capslock    a   s   d   f   g   h   j   k   l   ;   '     return
+  lshift     z   x   c   v   b   n   m   ,   .   /     rshift
+
+lctrl     lgui     lalt     space     ralt     rgui     rctrl
+
+--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+printscreen     scrolllock     pause
+
+insert         home           pageup
+delete        end            pagedown
+
+up   down   left   right
+
+--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+numlock   kp/   kp*   kp-
+
+    kp7   kp8   kp9   kp+
+
+    kp4   kp5   kp6
+
+    kp1   kp2   kp3
+
+    kp0   kp.   kpenter
+
