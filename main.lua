@@ -28,6 +28,7 @@ h4   = HH *0.4     h5  = HH *0.5     h6  = HH *0.6
 h7   = HH *0.7     h8  = HH *0.8     h9  = HH *0.9
 h66  = HH *0.667                    h75  = HH *0.75
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-- typically, local variables are faster, so use them when you can.
 -- it appears local vars aren't accessible through gamestates, using globals instead.
 -- not a biggie, just make sure you don't re-use names for something else.
 
@@ -48,11 +49,9 @@ pad  = 15  -- border padding  l,r,u,d
 lpad  = pad     rpad  = WW -pad
 upad  = pad     dpad  = HH -pad
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
--- define state manager, which will load main.lua within its respective states subdir
+-- callbacks -  https://love2d.org/wiki/love
 
 function clearCallbacks()
-  Lo .update  = nil
-  Lo .draw  = nil
   Lo .keypressed  = nil
   Lo .keyreleased  = nil
   Lo .mousepressed  = nil
@@ -61,7 +60,7 @@ function clearCallbacks()
   Lo .joystickreleased  = nil
 end
 
---~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-- define state manager, which will load main.lua within respective states subdir
 
 function loadState( state )
   clearCallbacks()
