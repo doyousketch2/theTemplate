@@ -68,10 +68,7 @@ https://www.youtube.com/playlist?list=PL924F20B05A624D91
 I got the simple gamestate-management from his vid 14.  
 
 
-This one is annoying for the reason I gave above.  
-https://www.youtube.com/watch?v=iMacxZQMPXs  
-
-The cheat-sheet is decent tho, easier than listening to him rattle on.  
+Here's a cheat-sheet that's decent, easier than listening to the guy rattle on.  
 http://www.newthinktank.com/2015/06/learn-lua-one-video  
 
 I've watched a ton of Lua vids, and that might be the best way,  
