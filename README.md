@@ -103,7 +103,7 @@ https://www.lexaloffle.com/bbs/?cat=7&sub=2&mode=carts
 But you have to be aware there may be specifics that won't transfer over.  
 
 ---
-You can try out ZeroBrane Studio as a Lua IDE  
+You can try out ZeroBrane Studio  
 
 Tho it's easier to navigate the filesystem in Pluma,  
 and I dig their code snippets plugin. 
