@@ -98,9 +98,9 @@ If you're stumped, can look / ask at StackOverflow,
 but their whole conversational ranking system **sux**.  
 https://stackoverflow.com/questions/tagged/lua  
 
-Poco8 carts might be of some use when trying to figure out Lua conventions.  
+To a lesser degree, Pico8 carts might be of some use,  
 https://www.lexaloffle.com/bbs/?cat=7&sub=2&mode=carts  
-But you have to be aware there may be specifics that won't transfer over.  
+But you have to be aware there will be specifics that won't transfer well.  
 
 ---
 You can try out ZeroBrane Studio  
