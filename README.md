@@ -81,6 +81,8 @@ https://love2d.org/wiki/Main_Page
 You might find useful source code examples in other GitHub projects,  
 or games at itch.io  https://itch.io/games/tag-love2d   
 
+http://howtomakeanrpg.com/a/classes-in-lua.html  
+
 Reddit is a good source for info.
 > /r/lua  
 > /r/love2d  
