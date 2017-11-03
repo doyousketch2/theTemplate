@@ -42,7 +42,7 @@ end -- hex
 
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-function enemy :cir() -- generate new local colors and sizes
+function enemy :cir()
   local instance  = {  name  = 'circle',
                    segments  = 16,
                           R  = mat .random( 0,  30 ),
@@ -56,7 +56,7 @@ function enemy :cir() -- generate new local colors and sizes
 
   setmetatable( instance,  meta )
   return instance
-end -- hex
+end -- cir
 
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
