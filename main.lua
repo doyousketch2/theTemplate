@@ -39,7 +39,6 @@ style  = 'data/fonts/C64_Pro-STYLE.ttf'
 smallFontSize   = 16
 mediumFontSize  = 20
 largeFontSize   = 30
-xlargeFontSize  = 35
 
 black  = {   0,   0,   0 }
 cBlue  = {  62,  49, 162 }
@@ -50,7 +49,10 @@ pad  = 15  -- border padding  l,r,u,d
 lpad  = pad     rpad  = WW -pad
 upad  = pad     dpad  = HH -pad
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
--- callbacks -  https://love2d.org/wiki/love
+-- Clear callbacks -  https://love2d.org/wiki/love
+-- This is so that when you switch gamestate, 
+-- it won't try to use callback code from a previously loaded state.
+-- Do the same w/ any callbacks you use, that aren't redefined.
 
 function clearCallbacks()
   Lo .keypressed  = nil
@@ -102,7 +104,6 @@ function Lo .load()
   smallFont   = gra .newFont( style, smallFontSize )
   mediumFont  = gra .newFont( style, mediumFontSize )
   largeFont   = gra .newFont( style, largeFontSize )
-  xlargeFont  = gra .newFont( style, xlargeFontSize )
 
   gra .setFont( mediumFont )
   loadState( 'run' )
