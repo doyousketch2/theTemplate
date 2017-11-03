@@ -12,7 +12,7 @@ end -- Lo .keypressed
 function Lo .update( dt ) -- DeltaTime  = time since last update,  in seconds.
   timer  = timer +dt
 
-    if timer > 3  then
+    if timer > 3.5  then
     loadState( 'game' )
   end -- if timer >
 end -- Lo .update(dt)
@@ -31,11 +31,11 @@ function Lo .draw()
 
   gra .print( 'READY',  w1 -10,  h3 -30 )
   
-  if timer > 1  then
+  if timer > 1.5  then
     gra .print( 'LOAD \"*\", 8, 1',  w1 -10,  h3 )
   end
   
-  if timer > 2  then
+  if timer > 2.5  then
     gra .print( 'RUN',  w1 -10,  h3 +30 )
   end
   
