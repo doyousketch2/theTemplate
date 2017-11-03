@@ -26,17 +26,6 @@ https://play.google.com/store/apps/details?id=com.alphainventor.filemanager
 Open a .love file as other, complete action using Löve for Android.  
 Alternatively, open the folder, and do the same thing with *main.lua*  
 
----  
-I realize there's no player in there yet.  
-Was going to put a guy at the bottom that runs around,  
-using a gun you aim with the mouse...  
-
-Then I thought of a breakout clone,  
-where you control a paddle-and-ball that destroy the words.  
-
-But that would take individual clone / placement of letters,  
-and collision detection - which is do-able, just takes time.  
-
 ---
 The spacing is so I can explain it to my kid.  
 
@@ -104,8 +93,3 @@ To a lesser degree, Pico8 carts might be of some use,
 https://www.lexaloffle.com/bbs/?cat=7&sub=2&mode=carts  
 But you have to be aware there will be specifics that won't transfer well.  
 
----
-You can try out ZeroBrane Studio  
-
-Tho it's easier to navigate the filesystem in Pluma,  
-and I dig their code snippets plugin. 
