@@ -20,7 +20,7 @@ function enemy :dia() -- create an object
 
   setmetatable( instance,  meta ) -- link instance with metatable
   return instance
-end -- tri
+end -- dia
 
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -38,7 +38,25 @@ function enemy :hex() -- generate new local colors and sizes
 
   setmetatable( instance,  meta )
   return instance
-end -- squ
+end -- hex
+
+--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+function enemy :cir() -- generate new local colors and sizes
+  local instance  = {  name  = 'circle',
+                   segments  = 16,
+                          R  = mat .random( 0,  30 ),
+                          G  = mat .random( 0,  30 ),
+                          B  = mat .random( 0,  30 ),
+                       size  = mat .random( 5,  15 ),
+                          x  = mat .random( 10,  WW -10 ),
+                          y  = mat .random( 10,  HH -10 ),
+                         vx  = mat .random( -50,  50 ),
+                         vy  = mat .random( -50,  50 )  }
+
+  setmetatable( instance,  meta )
+  return instance
+end -- hex
 
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
