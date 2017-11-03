@@ -30,8 +30,15 @@ function Lo .draw()
   gra .print( '64K RAM SYSTEM  38911 BASIC BYTES FREE',  w1 -30,  h1 +30 )
 
   gra .print( 'READY',  w1 -10,  h3 -30 )
-  gra .print( 'LOAD \"*\", 8, 1',  w1 -10,  h3 )
-  gra .print( 'RUN',  w1 -10,  h3 +30 )
+  
+  if timer > 1  then
+    gra .print( 'LOAD \"*\", 8, 1',  w1 -10,  h3 )
+  end
+  
+  if timer > 2  then
+    gra .print( 'RUN',  w1 -10,  h3 +30 )
+  end
+  
 end -- Lo .draw()
 
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
