@@ -15,6 +15,7 @@ key  = Lo .keyboard          vid  = Lo .video
 mat  = Lo .math              win  = Lo .window
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 WW  = gra .getWidth()        HH  = gra .getHeight()
+
 -- screen divisions:  quarter,  third,  and tenth
 w25  = WW *0.25                     w33  = WW *0.333
 w1   = WW *0.1     w2  = WW *0.2     w3  = WW *0.3
@@ -104,7 +105,7 @@ function Lo .load()
   xlargeFont  = gra .newFont( style, xlargeFontSize )
 
   gra .setFont( mediumFont )
-  loadState( 'blank' )
+  loadState( 'run' )
 end
 
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -114,4 +115,3 @@ function Lo .quit() -- do stuff before exit,  autosave,  say goodbye...
 end -- Lo .quit()
 
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
