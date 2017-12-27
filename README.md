@@ -66,6 +66,7 @@ I've watched a ton of Lua vids, and that might be the best way,
 ---
 Obviously, you'll want to refer to the Love2D wiki, and Lua docs.  
 https://love2d.org/wiki/Main_Page  
+https://love2d.org/forums  
 
 You might find useful source code examples in other GitHub projects,  
 or games at itch.io  https://itch.io/games/tag-love2d   
