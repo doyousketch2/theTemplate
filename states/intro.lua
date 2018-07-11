@@ -26,19 +26,19 @@ function Lo .draw()
   gra .polygon( 'line',  0,0,  WW,0,  WW,HH,  0,HH )
 
 -- gra .print( 'message',  x,  y,  rotation in radians,  scaleX,  scaleY )
-  gra .print( '****  Love theTemplate v 0.10.2  ****',  w1 -30,  h1 )
+  gra .print( '****  Love theTemplate v 11.1  ****',  w1 -30,  h1 )
   gra .print( '64K RAM SYSTEM  38911 BASIC BYTES FREE',  w1 -30,  h1 +30 )
 
   gra .print( 'READY',  w1 -10,  h3 -30 )
-  
+
   if timer > 1.5  then
     gra .print( 'LOAD \"*\", 8, 1',  w1 -10,  h3 )
   end
-  
+
   if timer > 2.5  then
     gra .print( 'RUN',  w1 -10,  h3 +30 )
   end
-  
+
 end -- Lo .draw()
 
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
