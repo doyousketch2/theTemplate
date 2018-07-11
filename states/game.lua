@@ -1,14 +1,15 @@
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 local track  = ''
-local bgmdir  = fil .getDirectoryItems( 'data/music/' )
+local bgmDir = 'data/music/'
+local songs  = fil .getDirectoryItems( bgmDir )
 
 local enemy  = require 'libs.enemy'
 local e  = {} -- list of enemies
 
 local eMax  = 200 -- max amount of enemies on screen at once
 
-local player  = {  segments  = 8,  R  = 255,  G  = 255,  B  = 255,
+local player  = {  segments  = 8,  R  = 1,  G  = 1,  B  = 1,
                    size  = 150,  x  = w5,  y  = h5,  vx  = 0,  vy  = 0  }
 
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -16,10 +17,10 @@ local player  = {  segments  = 8,  R  = 255,  G  = 255,  B  = 255,
 function newSong() -- public domain songs from modarchive.org
   local lasttrack  = track
   while track == lasttrack do -- shuffle 'til we're certain it's not the same song
-    track  = bgmdir[ mat .random( #bgmdir ) ]
+    track  = songs[ mat .random( #songs ) ]
   end
   print( 'track:  ' ..track )
-  bgm  = aud .newSource( 'data/music/' ..track )
+  bgm  = aud .newSource( bgmDir ..track, 'stream' )
   aud .play( bgm )
 end -- newSong()
 
@@ -121,9 +122,9 @@ function Lo .update( dt ) -- DeltaTime  = time since last update,  in seconds.
   end -- for i = 1,  #e
 
   -- keep the music playing
-  if bgm :isStopped() then
+  if not bgm :isPlaying() then
     newSong()
-  end -- if bgm
+  end -- if not bgm
 
 end -- Lo .update(dt)
 
@@ -146,7 +147,7 @@ function Lo .draw()
   gra .polygon( 'line',  0,0,  WW,0,  WW,HH,  0,HH )
 
 -- gra .print( 'message',  x,  y,  rotation in radians,  scaleX,  scaleY )
-  gra .print( '****  Love theTemplate v 0.10.2  ****',  w1 -30,  h1 )
+  gra .print( '****  Love theTemplate v 11.1  ****',  w1 -30,  h1 )
   gra .print( '64K RAM SYSTEM  38911 BASIC BYTES FREE',  w1 -30,  h1 +30 )
 
   gra .print( track,  w1 -10,  h3 -30 )
