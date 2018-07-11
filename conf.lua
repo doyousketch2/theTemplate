@@ -9,7 +9,7 @@ function love .conf(t)
   w .height = 600
   w .vsync  = true                     -- Enable vertical sync  (boolean)
 
-  t .version  = '0.10.2'               -- LÖVE version this game was made for
+  t .version  = '11.1'                 -- LÖVE version this game was made for
 
   t .identity  = 'theTemplate'         -- Name of the save directory
   t .externalstorage  = false          -- Read & write from external storage on Android
@@ -19,12 +19,14 @@ function love .conf(t)
                           --- Disabling will result 0 delta time in love.update
   m .event   = true       -- Manage events, like keypresses.
   m .math    = true       -- System-independent mathematical functions.
+  m .data    = true       -- Provides functionality for creating and transforming data.
 
   m .keyboard  = true     -- Interface to user's keyboard.
   m .mouse     = true     --             user's mouse.
   m .touch     = true     --            touch-screen presses.
   m .joystick  = false    --           connected joysticks.
 
+  m .font      = true     -- Allows you to work with fonts.
   m .image     = true     -- Decode encoded image data.
   m .graphics  = true     -- Draw lines, shapes, text, Images and other Drawable objects onto screen.
                           --- Its secondary responsibilities include:
@@ -40,6 +42,5 @@ function love .conf(t)
   m .system   = false     -- Information about user's system.
   m .thread   = false     -- Allows you to work with threads.
 
---  font                  ** Allows you to work with fonts.
 --  filesystem            ** Interface to user's filesystem.
 end
