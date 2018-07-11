@@ -3,30 +3,6 @@
 
 require 'libs.globals'
 
--- Clear callbacks -  https://love2d.org/wiki/love
--- This is so that when you switch gamestate, 
--- it won't try to use callback code from a previously loaded state.
--- Do the same w/ any callbacks you use, that aren't redefined.
-
-function clearCallbacks()
-  Lo .keypressed  = nil
-  Lo .keyreleased  = nil
-  Lo .mousepressed  = nil
-  Lo .mousereleased  = nil
-  Lo .joystickpressed  = nil
-  Lo .joystickreleased  = nil
-end
-
--- define state manager, which will load main.lua within respective states subdir
-
-function loadState( state )
-  clearCallbacks()
-  require ('states.' ..state)
-
-  print( 'Gamestate:  ' ..state )
-  load()
-end
-
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  -- initial love .load() function,  individual gamestates simply use load() to initialize.
 
@@ -35,12 +11,12 @@ function Lo .load()
 
   for a = 1,  #arg do -- 'arg' is a list of all the args,  so iterate through it.
     local ar  = arg[a]
-    
+
     if ar ~= '.' then -- dot is used when loading in Linux,  so we'll skip it.
       if ar == '-h' or ar == '-help'  then
         print('This is theTemplate by Doyousketch2 for Love2D\n')
         eve .quit()
-        
+
       else -- do something here if certain args are passed.  just prints 'em for demonstration.
         print('arg ' ..a ..': ' ..ar )
       end -- if ar ==
@@ -52,6 +28,7 @@ function Lo .load()
 
  -- initialize random numbers, otherwise Love defaults to the same number each time ?!?
   mat .setRandomSeed( os .time() )
+  mat .random()   mat .random()   mat .random()
 
   gra .setBackgroundColor( cBlue )
   gra .setColor( ltBlue )
@@ -63,7 +40,7 @@ function Lo .load()
 
   gra .setFont( mediumFont )
   loadState( 'intro' )
-end
+end -- Lo .load()
 
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -72,4 +49,3 @@ function Lo .quit() -- do stuff before exit,  autosave,  say goodbye...
 end -- Lo .quit()
 
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
