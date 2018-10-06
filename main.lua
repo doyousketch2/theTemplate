@@ -2,19 +2,20 @@
 --  Löve theTemplate       GNU GPLv3          @Doyousketch2
 
 require 'libs.globals'
+require 'libs.state_manager'
 
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  -- initial love .load() function,  individual gamestates simply use load() to initialize.
 
 function Lo .load()
-  print('Löve app begin')
+  print('Löve app begin:  ' ..title )
 
   for a = 1,  #arg do -- 'arg' is a list of all the args,  so iterate through it.
     local ar  = arg[a]
 
     if ar ~= '.' then -- dot is used when loading in Linux,  so we'll skip it.
       if ar == '-h' or ar == '-help'  then
-        print('This is theTemplate by Doyousketch2 for Love2D\n')
+        print( title ..' by Doyousketch2 for Love2D\n' )
         eve .quit()
 
       else -- do something here if certain args are passed.  just prints 'em for demonstration.
@@ -45,7 +46,8 @@ end -- Lo .load()
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 function Lo .quit() -- do stuff before exit,  autosave,  say goodbye...
-  print('Löve app exit')
+  print( 'Löve app exit:  ' ..title )
 end -- Lo .quit()
 
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
