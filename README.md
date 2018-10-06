@@ -51,6 +51,10 @@ Learn Lua in an Hour - by Tyler Neylon
 https://www.youtube.com/watch?v=S4eNl1rA1Ns  
 
 
+CS50's Introduction to Game Development  
+https://www.youtube.com/playlist?list=PLhQjrBD2T383Vx9-4vJYFsJbvZ_D17Qzh  
+
+
 Here's a playlist that breaks down the steps involved.  
 Make your own game - by goature  
 https://www.youtube.com/playlist?list=PL924F20B05A624D91  
@@ -87,9 +91,6 @@ Can try out snippets of code online
 https://repl.it/languages/lua
 
 If you're stumped, can look / ask at StackOverflow,  
-but their whole conversational ranking system **sux**.  
+but their whole conversational ranking system *sux*.  
 https://stackoverflow.com/questions/tagged/lua  
 
-To a lesser degree, Pico8 carts might be of some use,  
-https://www.lexaloffle.com/bbs/?cat=7&sub=2&mode=carts  
-But you have to be aware there will be specifics that won't transfer well. 
