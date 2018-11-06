@@ -59,19 +59,19 @@ end
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 --  cosine, sine and tangent for given value in radians.
-sin  = math.sin   -- sine wave                        _-_
+sin  = math.sin   -- sine wave                        .-.
 --  sin( 0 )       ;   = 0                     \     /   \     /
 --  sin( pi /4 )   ;   = 0.70710678118655       \   /     \   /
 --  sin( 1 )       ;   = 0.8414709848079         `-'       `-'
 
---  complementary sine wave,  π/2 radians out of phase
-cos  = math.cos    --                          _-_       _-_
+--  complementary sine wave,  π /2 radians out of phase
+cos  = math.cos    --                          .-.       .-.
 --  cos( 0 )       ;   = 1                        \     /   \
 --  cos( pi /4 )   ;   = 0.70710678118655          \   /     \
 --  cos( 1 )       ;   = 0.54030230586814           `-'       `-'
 
 --  line that touches the circle                    /
-tan  = math.tan    --                              /--_
+tan  = math.tan    --                              /--.
 --  tan( 0 )       ;   = 0                        /    \
 --  tan( pi /4 )   ;   = 1                       /\    /
 --  tan( 1 )       ;   = 1.5574077246549        /  `--'
@@ -79,13 +79,15 @@ tan  = math.tan    --                              /--_
 
 --  hyperbolic variations, returns radians.   y = func(x)
 cosh  = math.cosh
---  cosh( 0 )       ;   = 1                       \/
---  cosh( pi /2 )   ;   = 2.5091784786581         U
---  cosh( 1 )       ;   = 1.5430806348152
+--  cosh( 0 )       ;   = 1                      \    /
+--  cosh( pi /2 )   ;   = 2.5091784786581        \   /
+--  cosh( 1 )       ;   = 1.5430806348152        `--'
+
 sinh  = math.sinh   --                            |
 --  sinh( 0 )       ;   = 0                      /
 --  sinh( pi /2 )   ;   = 2.3012989023073       /
 --  sinh( 1 )       ;   = 1.1752011936438      |
+
 tanh  = math.tanh
 --  tanh( -16.807 )   ;   = -1                 ___
 --  tanh( 0 )         ;   = 0                 /
@@ -97,6 +99,7 @@ tanh  = math.tanh
 deg  = math.deg
 --  deg( math.pi )      ;   = 180
 --  deg( math.pi / 2 )   ;   = 90
+
 rad  = math.rad
 --  rad( 180 )   ;   = 3.1415926535898
 --  rad( 1 )    ;   = 0.017453292519943
@@ -226,7 +229,7 @@ huge  = math.huge
 
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
---  constant Pi, and portions thereof
+--  constant π, and portions thereof
 pi         = math .pi
 quarterpi  = pi *0.25
 halfpi     = pi *0.5
