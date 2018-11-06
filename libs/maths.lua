@@ -386,7 +386,7 @@ function dist3d( x1, y1, z1,  x2, y2, z2 ) -- between two 3D points.
 end
 
 
--- Collision detect.  true if two boxes overlap,  otherwise false
+-- AABB Collision detect.  true if two boxes overlap,  otherwise false.
 -- x1, y1  are top-left coords of first box,
 -- w1, h1  are width and height;  similar convention for second box.
 function checkCollision( x1, y1, w1, h1,  x2, y2, w2, h2 )
