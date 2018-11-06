@@ -11,25 +11,30 @@ abs  = math.abs
 --  abs( -100 )   ;   = 100
 
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-- Inverse trigonometric functions
 
---  inverse (arc) sine in radians
-asin  = math.asin
---  asin( 0 )   ;   = 0
---  asin( 1 )   ;   = 1.5707963267949
+--  arc sine in radians                      |
+asin  = math.asin   --                      /
+--  asin( 0 )   ;   =  0                   /
+--  asin( 1 )   ;   =  1.5707963267949    /
+--  pi /2       ;   =  1.5707963267949   /
+--  asin( -1 )  ;   = -1.5707963267949  |
 
---  inverse (arc) cosine in radians
-acos  = math.acos
---  acos( 1 )   ;   = 0
---  acos( 0 )   ;   = 1.5707963267949
+--  arc cosine in radians               |
+acos  = math.acos   --                   \
+--  acos( 1 )   ;   = 0                   \
+--  acos( 0 )   ;   = 1.5707963267949      \
+--  acos( -1 )  ;   = 3.1415926535898       \
+--  pi          ;   = 3.1415926535898        |
 
---  inverse (arc) tangent in radians,  range( -pi /2,  pi /2 )
-atan  = math.atan -- ( y / x )
---  c, s  = cos( 0.8 ),  sin( 0.8 )
---  atan( s/c )    ;   = 0.8
+--  arc tangent in radians,  range( -pi /2,  pi /2 )
+atan  = math.atan -- ( y / x )               ,----
+--  c, s  = cos( 0.8 ),  sin( 0.8 )         /
+--  atan( s/c )     ;   = 0.8          ----'
 
 --  angle of line from (0, 0) to (x, y) in radians,  range( -pi,  pi )
 atan2  = math.atan2 -- ( y, x )  two args required,  returns signed quads
---  atan2( s, c )   ;   = 0.8
+--  atan2( s, c )    ;   = 0.8
 
 --  pi /4            ;   =  0.78539816339745
 --  atan( 1 )        ;   =  0.78539816339745
