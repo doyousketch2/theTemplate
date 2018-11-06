@@ -1,5 +1,6 @@
 
 --  love2d.org/wiki/General_math
+--  love2d.org/wiki/BoundingBox.lua
 --  codeplea.com/simple-interpolation
 --  lua-users.org/wiki/MathLibraryTutorial
 --  paulbourke.net/miscellaneous/interpolation
@@ -13,6 +14,9 @@
 --[[  but I'll need proof:
 
 iter  = 2000000
+--  spin wheels for a second, to be sure functions are loaded and ready
+for i = 1, 20 do example_function_1(i)  end
+for i = 1, 20 do example_function_2(i)  end
 
 init  = os.clock
 for i = 1, iter do  example_function_1(i)  end
@@ -350,6 +354,21 @@ end
 
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+--  Normalize two numbers, common scale
+function normalize( x, y )
+  --  Pythag      aSqu + bSqu.  SquRt = c
+  local c  = sqrt(x ^2 + y ^2)
+
+  if c == 0 then  return 0,0,0
+  else  return x /c,  y /c,  c -- ratios with a common denomonator
+  end
+end -- normalize
+
+--  example:
+--  a, b, c  = normalize( 8, 13 )
+--  print( a *c,  b *c )   ;   8  13
+
+
 function angle( x1, y1,  x2, y2 ) -- angle between two points.
   return atan2( y2 -y1,  x2 -x1 )
 end
@@ -367,20 +386,26 @@ function dist3d( x1, y1, z1,  x2, y2, z2 ) -- between two 3D points.
 end
 
 
---  Normalize two numbers, common scale
-function normalize( x, y )
-  --  Pythag      aSqu + bSqu.  SquRt = c
-  local c  = sqrt(x ^2 + y ^2)
+-- Collision detect.  true if two boxes overlap,  otherwise false
+-- x1, y1  are top-left coords of first box,
+-- w1, h1  are width and height;  similar convention for second box.
+function checkCollision( x1, y1, w1, h1,  x2, y2, w2, h2 )
+  local found = false
+  if x1 < x2 +w2 then
+    if x2 < x1 +w1 then
+      if y1 < y2 +h2 then
+        if y2 < y1 +h1 then
+          found = true
+        end  --  this compiles
+      end  --  to faster code
+    end  --  than the example
+  end  --  on love2D.org
+  if found then  return true
+  else  return false
+  end -- found
+end  --  checkCollision()
 
-  if c == 0 then  return 0,0,0
-  else  return x /c,  y /c,  c -- ratios with a common denomonator
-  end
-end -- normalize
-
---  example:
---  a, b, c  = normalize( 8, 13 )
---  print( a *c,  b *c )   ;   8  13
-
+--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 --  1 if positive,  -1 if negative,  or 0
 function sign( number )
