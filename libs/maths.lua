@@ -119,7 +119,7 @@ log  = math.log -- (x [, base])   inverse of math.exp,  optional base
 --  log( -2 )             ;   = nan
 --  log( 1000, 10 )       ;   = 3
 
-log10  = math.log10  --  base-10 logs
+log10  = math.log10  --  base-10 logs.  faster than log(x, 10)
 --  log10( 1000 )    ;   = 3
 --  log10( -1000 )    ;   = nan
 --  log10( 1000000 )   ;   = 6
@@ -127,7 +127,7 @@ log10  = math.log10  --  base-10 logs
 --  returns x^y
 pow  = math.pow
 --  pow( 2, 10 )   ;   = 1024
---  2 ^ 10         ;   = 1024
+--  2 ^ 10         ;   = 1024  -- fractionally faster
 
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -153,6 +153,7 @@ min  = math.min --  (x, ···)
 --  min( 1,  2 )          ;   = 1
 --  min( 1.2,  7,  3 )    ;   = 1.2
 --  min( 1.2,  -7,  3 )   ;   = -7
+
 max  = math.max -- (x, ···)
 --  max( 1.2,  -7,  3 )   ;   = 3
 --  max( 1.2,  7,  3 )    ;   = 7
