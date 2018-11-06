@@ -35,21 +35,10 @@ h66  = HH *0.667                    h75  = HH *0.75
 
 timer  = 0
 
-pi         = math .pi
-quarterpi  = pi *0.25
-halfpi     = pi *0.5
-threeqpi   = pi *0.75
-tau        = pi *2
-
 style  = 'data/fonts/C64_Pro-STYLE.ttf'
-smallFontSize   = 16
-mediumFontSize  = 20
-largeFontSize   = 30
-
-black  = {   0,   0,   0 }
-cBlue  = {  62/255,  49/255, 162/255 }
-ltBlue = { 124/255, 112/255, 218/255 }
-white  = { 1, 1, 1 }
+smallFontSize   = 12
+mediumFontSize  = 14
+largeFontSize   = 16
 
 pad  = 15  -- border padding
 rpad  = WW -pad
@@ -62,17 +51,55 @@ function c255(r, g, b, a)
   local r  = r /255
   local g  = g /255
   local b  = b /255
+
   if a then
     local a  = a /255
     return { r, g, b, a }
   else
     return { r, g, b }
-  end
-end
+  end -- if a
+end -- c255
 
 black  = { 0, 0, 0 }
 cBlue  = c255( 62, 49, 162 )
 ltBlue = c255( 124, 112, 218 )
 white  = { 1, 1, 1 }
---~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-- stackoverflow.com/questions/9168058/how-to-dump-a-table-to-console
+
+-- Print contents of `tbl`, with indentation.
+-- optional `indent` sets the initial level of indentation.
+-- optional `maxindent` lets you decide how deep you desire recursion.
+
+function prettyprint( tbl,  indent,  maxindent )
+  if not indent then indent  = 0 end
+  if not maxindent then maxindent  = 20 end
+
+  for k, v in pairs( tbl ) do
+    form  = string.rep( '   ', indent ) ..k
+
+    if indent %3 == 0 then -- alternate delimiters, cycle every 3 rows
+      form  = form..') '
+    elseif indent %3 == 2 then
+      form  = form..': '
+    else
+      form  = form ..'. '
+    end
+
+    if type(v) == 'table' then
+      print( form )
+      if k < maxindent then -- recursive call to self, deeper indent
+        prettyprint( v, indent +1 )
+      end -- don't go too deep down that rabbithole, you might crash
+
+    elseif type(v) == 'boolean' then
+      print( form ..tostring(v) )
+    else
+      print( form ..v )
+    end -- if type ==
+
+  end -- for k, v in pairs
+end -- prettyprint()
+
+--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
