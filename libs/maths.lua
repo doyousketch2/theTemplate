@@ -1,6 +1,7 @@
 
 --  love2d.org/wiki/General_math
 --  love2d.org/wiki/BoundingBox.lua
+--  love2d.org/wiki/Category:Snippets
 --  codeplea.com/simple-interpolation
 --  lua-users.org/wiki/MathLibraryTutorial
 --  paulbourke.net/miscellaneous/interpolation
@@ -79,9 +80,9 @@ floor  = math.floor
 --  floor( 0.5 )    ;   = 0
 --  floor( -0.5 )   ;   = -1
 
-function round( number )
-  return floor( number +0.5 )
-end
+function round( num )
+  return floor( num +0.5 )
+end -- round()
 
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -229,6 +230,8 @@ random  = math.random -- ([m [, n]])
 --  random( 70, 80 )   ;   = 76
 --  upper and lower MUST be positive ints, else crash
 
+--  you rarely call mat .setRandomSeed() so no need for shortcut
+
 --  seed for pseudo-random gen:  Equal seeds produce equal sequences
 --  mat .setRandomSeed( 1234 );  random(), random(), random()
 --  0.12414929654836    0.0065004425183874    0.3894466994232
@@ -265,11 +268,11 @@ tau        = pi *2
 
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-function clamp( number, low, high )
-  low  = low or 0
-  high  = high or 1
-  return min( max( low, number ), high )
-end
+function clamp( num, lo, hi )
+  lo  = lo or 0  --  default lo 0, hi 1
+  hi  = hi or 1
+  return min( max( lo, num ), hi )
+end -- clamp()
 
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 --  Interpolation methods
@@ -278,39 +281,39 @@ end
 function step( a, b,  mu )
   if mu < 0.5 then  return a
   else  return b
-  end
-end
+  end -- if mu
+end -- step()
 
 
 -- straight Linear interpolation between two numbers.
 function lerp( a, b,  mu )
   return a +(b -a) *mu
-end
+end -- lerp()
 
 
 -- curvy Cosine interpolation between two numbers.
 function cerp( a, b,  mu )
   local f  = (1 -cos(mu *pi)) *0.5
   return a *(1 -f) +b *f
-end
+end -- cerp()
 
 
 --  similar to cerp, but faster
 function smoothStep( a, b,  mu )
   return lerp( a,  b,  mu ^2 *(3 -2 *mu) )
-end
+end -- smoothStep()
 
 
 --  quad-in speed up
 function acceleration( a, b,  mu )
   return lerp( a,  b,  mu ^2 )
-end
+end -- acceleration()
 
 
 --  quad-out slow down
 function deceleration( a, b,  mu )
   return lerp( a,  b,  1- (1 -mu) ^2 )
-end
+end -- deceleration()
 
 
 --  gently ramp up, then down
@@ -318,7 +321,7 @@ function quad_inout( a, b,  mu )
   if mu < 0.5 then  return acceleration( a, b,  mu )
   else  return deceleration( a, b,  mu )
   end
-end
+end -- quad_inout()
 
 
 -- soft cubic interpolation between 2 endpoints, + 2 outer control points
@@ -330,7 +333,7 @@ function cubic( y1, y2, y3, y4,  mu )
   local a4  = y2
 
   return ( a1 *mu *mu2 +a2 *mu2 +a3 *mu +a4 )
-end
+end -- cubic()
 
 
 --  Tension: -1 is low,  0 normal,  1 high
@@ -350,7 +353,7 @@ function hermite( y1, y2, y3, y4, mu, tension, bias )
   local a4 = -2 *mu3 +3 *mu2
 
   return ( a1 *y2 +a2 *m1 +a3 *m2 +a4 *y3 )
-end
+end -- hermite()
 
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -362,28 +365,35 @@ function normalize( x, y )
   if c == 0 then  return 0,0,0
   else  return x /c,  y /c,  c -- ratios with a common denomonator
   end
-end -- normalize
+end -- normalize()
 
 --  example:
 --  a, b, c  = normalize( 8, 13 )
 --  print( a *c,  b *c )   ;   8  13
 
 
-function angle( x1, y1,  x2, y2 ) -- angle between two points.
+function angleR( x1, y1,  x2, y2 ) -- angle between two points, radians
   return atan2( y2 -y1,  x2 -x1 )
-end
+end -- angleR()
+
+
+function angleD( x1, y1,  x2, y2 ) -- angle between two points, degrees
+  local t  = -deg( atan2( x2 -x1, y2 -y1 ))
+  if t < 0 then t  = t +360 end
+  return t
+end -- angleD()
 
 
 function dist( x1, y1,  x2, y2 )  --  distance between two points.
 --  Pythag       aSquared + bSquared.   squareRoot = c
   return sqrt((x2 -x1) ^2 + (y2 -y1) ^2)
-end
+end -- dist()
 
 
 function dist3d( x1, y1, z1,  x2, y2, z2 ) -- between two 3D points.
 --  Pythag      aSquared  +  bSquared  +  cSquared.   squareRoot = d
   return sqrt((x2 -x1) ^2 + (y2 -y1) ^2 + (z2 -z1) ^2)
-end
+end -- dist3d()
 
 
 -- AABB Collision detect.  true if two boxes overlap,  otherwise false.
@@ -400,20 +410,16 @@ function checkCollision( x1, y1, w1, h1,  x2, y2, w2, h2 )
       end  --  to faster code    --     '----+---'    |
     end  --  than the example    --          |        |
   end  --  on love2D.org         --          |    B   |
-  if found then  return true     --          |        |
-  else  return false             --          '--------'
-  end -- if found
-end  --  checkCollision()
+return found                     --          |        |
+end -- checkCollision()          --          '--------'
 
 
 -- radial Collision.  true if two circles overlap,  otherwise false.
 -- x1, y1  are central coordinates of first circle,
 -- r1 is radius;  similar convention for second circle.  0-o
 function radialCollision( x1, y1, r1,  x2, y2, r2 )
-  if dist( x1, y1,  x2, y2 ) < r1 +r2 then  return true
-  else  return false
-  end  -- if dist()
-end  --  radialCollision()
+  return dist( x1, y1,  x2, y2 ) < r1 +r2
+end -- radialCollision()
 
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -428,10 +434,10 @@ end -- sign
 
 --  Randomly returns either -1 or 1
 function rsign()
-  if random() < 0.5 then return -1
+  if random(2) == 2 then return -1
   else return 1
   end
-end
+end -- rsign()
 
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
