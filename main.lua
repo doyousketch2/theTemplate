@@ -2,6 +2,7 @@
 --  Löve theTemplate       GNU GPLv3          @Doyousketch2
 
 require 'libs.globals'
+require 'libs.maths'
 require 'libs.state_manager'
 
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
