@@ -6,6 +6,24 @@
 --  www.tutorialspoint.com/lua/lua_standard_libraries_math_library.htm
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+--  if any of my functs differ from other online examples,
+--  it's because I've tested them for speed, and chose the fastest.
+
+--  if you happen to know any faster, you're welcome to mention it,
+--[[  but I'll need proof:
+
+iter  = 2000000
+
+init  = os.clock
+for i = 1, iter do  example_function_1(i)  end
+print( '1' ..os.clock -init )
+
+init  = os.clock
+for i = 1, iter do  example_function_2(i)  end
+print( '2' ..os.clock -init )
+
+]]--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 --  absolute, non-negative value
 abs  = math.abs
 --  abs( -100 )   ;   = 100
@@ -285,7 +303,7 @@ function acceleration( a, b,  mu )
 end
 
 
--- quad-out slow down
+--  quad-out slow down
 function deceleration( a, b,  mu )
   return lerp( a,  b,  1- (1 -mu) ^2 )
 end
