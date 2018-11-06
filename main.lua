@@ -29,8 +29,7 @@ function Lo .load()
   gra .setDefaultFilter( 'nearest',  'nearest',  0 )
 
  -- initialize random numbers, otherwise Love defaults to the same number each time ?!?
-  mat .setRandomSeed( os .time() )
-  mat .random()   mat .random()   mat .random()
+  mat .setRandomSeed( os.time() );  random(),  random(),  random()
 
   gra .setBackgroundColor( cBlue )
   gra .setColor( ltBlue )
