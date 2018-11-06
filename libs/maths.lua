@@ -390,20 +390,30 @@ end
 -- x1, y1  are top-left coords of first box,
 -- w1, h1  are width and height;  similar convention for second box.
 function checkCollision( x1, y1, w1, h1,  x2, y2, w2, h2 )
-  local found = false
-  if x1 < x2 +w2 then
-    if x2 < x1 +w1 then
-      if y1 < y2 +h2 then
-        if y2 < y1 +h1 then
-          found = true
-        end  --  this compiles
-      end  --  to faster code
-    end  --  than the example
-  end  --  on love2D.org
-  if found then  return true
-  else  return false
-  end -- found
+  local found  = false
+  if x1 < x2 +w2 then            --     .--------.
+    if x2 < x1 +w1 then          --     |        |     Axis-Aligned
+      if y1 < y2 +h2 then        --     |   A    |     Bounding Boxes
+        if y2 < y1 +h1 then      --     |        |
+          found  = true          --     |    .---+----.
+        end  --  this compiles   --     |    |   |    |
+      end  --  to faster code    --     '----+---'    |
+    end  --  than the example    --          |        |
+  end  --  on love2D.org         --          |    B   |
+  if found then  return true     --          |        |
+  else  return false             --          '--------'
+  end -- if found
 end  --  checkCollision()
+
+
+-- radial Collision.  true if two circles overlap,  otherwise false.
+-- x1, y1  are central coordinates of first circle,
+-- r1 is radius;  similar convention for second circle.  0-o
+function radialCollision( x1, y1, r1,  x2, y2, r2 )
+  if dist( x1, y1,  x2, y2 ) < r1 +r2 then  return true
+  else  return false
+  end  -- if dist()
+end  --  radialCollision()
 
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
