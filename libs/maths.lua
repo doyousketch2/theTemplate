@@ -64,7 +64,7 @@ sin  = math.sin   -- sine wave                        .-.
 --  sin( pi /4 )   ;   = 0.70710678118655       \   /     \   /
 --  sin( 1 )       ;   = 0.8414709848079         `-'       `-'
 
---  complementary sine wave,  π /2 radians out of phase
+--  complementary sine wave,  90° out of phase,  π /2 radians
 cos  = math.cos    --                          .-.       .-.
 --  cos( 0 )       ;   = 1                        \     /   \
 --  cos( pi /4 )   ;   = 0.70710678118655          \   /     \
