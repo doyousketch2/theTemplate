@@ -79,8 +79,8 @@ tan  = math.tan    --                              /--.
 
 --  hyperbolic variations, returns radians.   y = func(x)
 cosh  = math.cosh
---  cosh( 0 )       ;   = 1                      \    /
---  cosh( pi /2 )   ;   = 2.5091784786581        \   /
+--  cosh( 0 )       ;   = 1                    \      /
+--  cosh( pi /2 )   ;   = 2.5091784786581       \    /
 --  cosh( 1 )       ;   = 1.5430806348152        `--'
 
 sinh  = math.sinh   --                            |
