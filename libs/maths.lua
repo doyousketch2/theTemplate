@@ -167,7 +167,6 @@ max  = math.max -- (x, ···)
 
 --  floating-point remainder of x / y.  rounds towards zero
 fmod  = math.fmod -- (x, y)
-
 --  fmod( 9.5,  -3.5 )   ;   -2.5
 --  fmod( -9.5,  3.5 )   ;   2.5
 --  fmod( 9.5,  0 )      ;   -nan
@@ -294,7 +293,7 @@ end
 
 --  gently ramp up, then down
 function quad_inout( a, b,  mu )
-  if t < 0.5 then  return acceleration( a, b,  mu )
+  if mu < 0.5 then  return acceleration( a, b,  mu )
   else  return deceleration( a, b,  mu )
   end
 end
@@ -323,10 +322,10 @@ function hermite( y1, y2, y3, y4, mu, tension, bias )
   local m2  =     (y3 -y2) *(1 +bias) *(1 -tension) /2
   local m2  = m2 +(y4 -y3) *(1 -bias) *(1 -tension) /2
 
-  a1 =  2 *mu3 -3 *mu2 +1
-  a2 =     mu3 -2 *mu2 +mu
-  a3 =     mu3 -   mu2
-  a4 = -2 *mu3 +3 *mu2
+  local a1 =  2 *mu3 -3 *mu2 +1
+  local a2 =     mu3 -2 *mu2 +mu
+  local a3 =     mu3 -   mu2
+  local a4 = -2 *mu3 +3 *mu2
 
   return ( a1 *y2 +a2 *m1 +a3 *m2 +a4 *y3 )
 end
@@ -372,6 +371,7 @@ function sign( number )
   else  return 0
   end
 end -- sign
+
 
 --  Randomly returns either -1 or 1
 function rsign()
