@@ -30,7 +30,7 @@ function Lo .load()
 
  -- initialize random numbers, otherwise Lua defaults to same numbers each time ?!?
  --  Love gen differs from Lua, it comes premixed   love2d.org/wiki/love.run
-  math.randomseed( os.time() );  random(),  random(),  random()
+  math.randomseed( os.time() );  random();  random();  random()
 
   gra .setBackgroundColor( cBlue )
   gra .setColor( ltBlue )
