@@ -51,17 +51,16 @@ acos  = math.acos   --                   \
 
 --  arc tangent in radians,  range( -pi /2,  pi /2 )
 atan  = math.atan -- ( y / x )               ,----
---  c, s  = cos( 0.8 ),  sin( 0.8 )         /
---  atan( s/c )     ;   = 0.8          ----'
+--  s, c  = sin( 0.8 ),  cos( 0.8 )         /
+--  atan( s/c )      ;   = 0.8         ----'
 
+--  atan( -1 )       ;   = -0.78539816339745
+--  atan( 1 )        ;   =  0.78539816339745
+--  pi /4            ;   =  0.78539816339745
 
 --  angle of line from (0, 0) to (x, y) in radians,  range( -pi,  pi )
 atan2  = math.atan2 -- ( y, x )  two args required,  returns signed quads
 --  atan2( s, c )    ;   = 0.8
-
---  pi /4            ;   =  0.78539816339745
---  atan( 1 )        ;   =  0.78539816339745
---  atan( -1 )       ;   = -0.78539816339745
 
 --  atan2( 1, 1 )    ;   =  0.78539816339745  quadrant I    top-right
 --  atan2( -1, 1 )   ;   = -0.78539816339745  quadrant II   top-left
@@ -227,8 +226,8 @@ random  = math.random -- ([m [, n]])
 --  random( lower, upper ) ints between lower & upper (inclusive)
 
 --  random()     ;   = 0.56358531449324
---  random( 1 )   ;   = 1  no room between 1 and 1,  will always return 1
---  random( 2 )     ;   = 1  use 2 instead
+--  random( 1 )   ;   = 1  no room between 1 & 1.  will always return 1,
+--  random( 2 )     ;   = 1                        use 2 instead
 --  random( 2 )      ;   = 2
 --  random( 100 )     ;   = 81
 --  random( 70, 80 )   ;   = 76
@@ -239,16 +238,17 @@ random  = math.random -- ([m [, n]])
 --  decide to use that, it comes pre-primed.
 
 --  seed for pseudo-random gen:  Equal seeds produce equal sequences
---  math.randomseed( 1234 );  random(), random(), random()
+--  math.randomseed( 1234 );  random();  random();  random()
 --  0.12414929654836    0.0065004425183874    0.3894466994232
---  math.randomseed( 1234 );  random(), random(), random()
+--  math.randomseed( 1234 );  random();  random();  random()
 --  0.12414929654836    0.0065004425183874    0.3894466994232
 
---  good seed is os.clock(),  wait a second before calling again.
+--  good seed:  os.clock()*1000000
+--  os.time() is also fine, but needs a second for new value
 --  first number not really 'random' (Win2K & OSX)
 --  roll the dice a couple times to prime them.
 
---  math.randomseed( os.clock() );  random(), random(), random()
+--  math.randomseed( os.clock()*1000000 );  random(); random(); random()
 
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
