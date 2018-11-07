@@ -1,10 +1,7 @@
 
 --  love2d.org/wiki/General_math
---  love2d.org/wiki/BoundingBox.lua
 --  love2d.org/wiki/Category:Snippets
---  codeplea.com/simple-interpolation
 --  lua-users.org/wiki/MathLibraryTutorial
---  paulbourke.net/miscellaneous/interpolation
 --  www.tutorialspoint.com/lua/lua_standard_libraries_math_library.htm
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -43,6 +40,7 @@ asin  = math.asin   --                      /
 --  pi /2       ;   =  1.5707963267949   /
 --  asin( -1 )  ;   = -1.5707963267949  |
 
+
 --  arc cosine in radians               |
 acos  = math.acos   --                   \
 --  acos( 1 )   ;   = 0                   \
@@ -50,10 +48,12 @@ acos  = math.acos   --                   \
 --  acos( -1 )  ;   = 3.1415926535898       \
 --  pi          ;   = 3.1415926535898        |
 
+
 --  arc tangent in radians,  range( -pi /2,  pi /2 )
 atan  = math.atan -- ( y / x )               ,----
 --  c, s  = cos( 0.8 ),  sin( 0.8 )         /
 --  atan( s/c )     ;   = 0.8          ----'
+
 
 --  angle of line from (0, 0) to (x, y) in radians,  range( -pi,  pi )
 atan2  = math.atan2 -- ( y, x )  two args required,  returns signed quads
@@ -92,11 +92,13 @@ sin  = math.sin   -- sine wave                        .-.
 --  sin( pi /4 )   ;   = 0.70710678118655       \   /     \   /
 --  sin( 1 )       ;   = 0.8414709848079         `-'       `-'
 
+
 --  complementary sine wave,  90° out of phase,  π /2 radians
 cos  = math.cos    --                          .-.       .-.
 --  cos( 0 )       ;   = 1                        \     /   \
 --  cos( pi /4 )   ;   = 0.70710678118655          \   /     \
 --  cos( 1 )       ;   = 0.54030230586814           `-'       `-'
+
 
 --  line that touches the circle                    /
 tan  = math.tan    --                              /--.
@@ -111,10 +113,12 @@ cosh  = math.cosh
 --  cosh( pi /2 )   ;   = 2.5091784786581       \    /
 --  cosh( 1 )       ;   = 1.5430806348152        `--'
 
+
 sinh  = math.sinh   --                            |
 --  sinh( 0 )       ;   = 0                      /
 --  sinh( pi /2 )   ;   = 2.3012989023073       /
 --  sinh( 1 )       ;   = 1.1752011936438      |
+
 
 tanh  = math.tanh
 --  tanh( -16.807 )   ;   = -1                 ,----
@@ -168,7 +172,7 @@ frexp  = math.frexp -- (x)  = m2e
 --  abs(m) is range(  0.5(inclusive),  1(exclusive)  )
 --                 ...or zero if x = zero
 
---  m2e (e = integer)
+--  m2e (exponent = integer)
 ldexp  = math.ldexp
 --  ldexp( 1, 9 )       ;   = 512
 --  ldexp( 1, 10 )       ;   = 1024
@@ -177,7 +181,7 @@ ldexp  = math.ldexp
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 --  minimum or maximum value from variable length list of args.
-min  = math.min --  (x, ···)
+min  = math.min -- (x, ···)
 --  min( 1,  2 )          ;   = 1
 --  min( 1.2,  7,  3 )    ;   = 1.2
 --  min( 1.2,  -7,  3 )   ;   = -7
@@ -230,19 +234,21 @@ random  = math.random -- ([m [, n]])
 --  random( 70, 80 )   ;   = 76
 --  upper and lower MUST be positive ints, else crash
 
---  you rarely call mat .setRandomSeed() so no need for shortcut
+--  you rarely call math.randomseed(), so no need for extra shortcut.
+--  Love.math.setRandomSeed() is a different generator, so if you
+--  decide to use that, you'll need to prime it in a similar fashion.
 
 --  seed for pseudo-random gen:  Equal seeds produce equal sequences
---  mat .setRandomSeed( 1234 );  random(), random(), random()
+--  math.randomseed( 1234 );  random(), random(), random()
 --  0.12414929654836    0.0065004425183874    0.3894466994232
---  mat .setRandomSeed( 1234 );  random(), random(), random()
+--  math.randomseed( 1234 );  random(), random(), random()
 --  0.12414929654836    0.0065004425183874    0.3894466994232
 
 --  good seed is os.clock(),  wait a second before calling again.
 --  first number not really 'random' (Win2K & OSX)
 --  roll the dice a couple times to prime them.
 
---  mat .setRandomSeed( os.clock() );  random(), random(), random()
+--  math.randomseed( os.clock() );  random(), random(), random()
 
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -274,8 +280,13 @@ function clamp( num, lo, hi )
   return min( max( lo, num ), hi )
 end -- clamp()
 
---~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 --  Interpolation methods
+--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--  paulbourke.net/miscellaneous/interpolation
+--  codeplea.com/simple-interpolation
+--  www.gizma.com/easing
+
 
 -- jump from one value to the next halfway through
 function step( a, b,  mu )
@@ -357,11 +368,11 @@ end -- hermite()
 
 --~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
---  Normalize two numbers, common scale
+--  Normalize two numbers to a common scale
 function normalize( x, y )
-  --  Pythag      aSqu + bSqu.  SquRt = c
+  --  Pythag  aSquared + bSquuared.
   local c  = sqrt(x ^2 + y ^2)
-
+  --    SquRt = c
   if c == 0 then  return 0,0,0
   else  return x /c,  y /c,  c -- ratios with a common denomonator
   end
@@ -385,16 +396,20 @@ end -- angleD()
 
 
 function dist( x1, y1,  x2, y2 )  --  distance between two points.
---  Pythag       aSquared + bSquared.   squareRoot = c
+--  Pythag       aSquared + bSquared.
   return sqrt((x2 -x1) ^2 + (y2 -y1) ^2)
+  --  squareRoot = c
 end -- dist()
 
 
 function dist3d( x1, y1, z1,  x2, y2, z2 ) -- between two 3D points.
---  Pythag      aSquared  +  bSquared  +  cSquared.   squareRoot = d
+--  Pythag     aSquared  +  bSquared  +  cSquared.
   return sqrt((x2 -x1) ^2 + (y2 -y1) ^2 + (z2 -z1) ^2)
+  --  squareRoot = d
 end -- dist3d()
 
+--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--  love2d.org/wiki/BoundingBox.lua
 
 -- AABB Collision detect.  true if two boxes overlap,  otherwise false.
 -- x1, y1  are top-left coords of first box,
