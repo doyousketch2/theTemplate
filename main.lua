@@ -30,7 +30,10 @@ function Lo .load()
 
  -- initialize random numbers, otherwise Love defaults to the same number each time ?!?
   math.randomseed( os.time() );  random(),  random(),  random()
- 
+  mat.setRandomSeed( os.time() ); mat.random(), mat.random(), mat.random()
+ --  Love gen differs from Lua's.  can set both, in case you use the other
+
+
   gra .setBackgroundColor( cBlue )
   gra .setColor( ltBlue )
   gra .setLineWidth( pad *2 )
