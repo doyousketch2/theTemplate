@@ -16,13 +16,13 @@ iter  = 2000000
 for i = 1, 20 do example_function_1(i)  end
 for i = 1, 20 do example_function_2(i)  end
 
-init  = os.clock  --  time first function
+init  = os.clock()  --  time first function
 for i = 1, iter do  example_function_1(i)  end
-print( '1' ..os.clock -init )
+print( '1' ..os.clock() -init )
 
-init  = os.clock  --  time second function
+init  = os.clock()  --  time second function
 for i = 1, iter do  example_function_2(i)  end
-print( '2' ..os.clock -init )
+print( '2' ..os.clock() -init )
 
 ]]--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
