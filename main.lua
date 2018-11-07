@@ -28,11 +28,9 @@ function Lo .load()
   -- disable antialiasing, so pixels remain crisp while zooming,  used for pixel art
   gra .setDefaultFilter( 'nearest',  'nearest',  0 )
 
- -- initialize random numbers, otherwise Love defaults to the same number each time ?!?
+ -- initialize random numbers, otherwise Lua defaults to same numbers each time ?!?
+ --  Love gen differs from Lua, it comes premixed   love2d.org/wiki/love.run
   math.randomseed( os.time() );  random(),  random(),  random()
-  mat.setRandomSeed( os.time() ); mat.random(), mat.random(), mat.random()
- --  Love gen differs from Lua's.  can set both, in case you use the other
-
 
   gra .setBackgroundColor( cBlue )
   gra .setColor( ltBlue )
