@@ -236,7 +236,7 @@ random  = math.random -- ([m [, n]])
 
 --  you rarely call math.randomseed(), so no need for extra shortcut.
 --  Love.math.setRandomSeed() is a different generator, so if you
---  decide to use that, you'll need to prime it in a similar fashion.
+--  decide to use that, it comes pre-primed.
 
 --  seed for pseudo-random gen:  Equal seeds produce equal sequences
 --  math.randomseed( 1234 );  random(), random(), random()
